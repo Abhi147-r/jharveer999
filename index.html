@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Abhi AI — a voice-first assistant with a black neon interface and expressive humanoid avatar.">
+  <title>Abhi AI</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <div class="black-glow glow-left" aria-hidden="true"></div>
+  <div class="black-glow glow-right" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand-card" href="/" aria-label="Abhi AI home"><strong>ABHI AI</strong></a>
+    <div class="topbar-tools">
+      <span class="system-pill"><span class="connection-dot"></span><span id="connectionText">Connecting</span></span>
+      <span class="top-clock" id="localClock" aria-label="Local time"></span>
+      <button class="clear-button" id="clearChat" type="button" aria-label="Clear chat" title="Clear chat">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M10 11v6m4-6v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg>
+        <span>Clear</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="main-display">
+    <section class="feature-notice" id="featureNotice" aria-label="Abhi AI features" aria-live="off">
+      <div class="feature-topline">
+        <span class="notice-dot"></span><span class="notice-label">FEATURE SPOTLIGHT</span>
+        <span class="feature-count" id="featureCount">01 / 05</span>
+      </div>
+      <div class="feature-copy" id="featureCopy">
+        <strong id="featureTitle">Voice chat</strong>
+        <span id="featureText">Speak naturally or type a message.</span>
+      </div>
+      <div class="feature-progress" aria-hidden="true"><span id="featureProgress"></span></div>
+    </section>
+
+    <section class="orb-zone" aria-label="Abhi AI humanoid assistant">
+      <div class="orb-stage" id="orbStage" data-state="idle" data-gesture="idle" role="img" aria-label="A white animated humanoid assistant">
+        <div class="orb-halo halo-one" aria-hidden="true"></div>
+        <div class="orb-halo halo-two" aria-hidden="true"></div>
+        <div class="orb-rig humanoid-rig" aria-hidden="true">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <svg class="humanoid" viewBox="0 0 260 310" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="bodyMetal" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#fff"/><stop offset=".28" stop-color="#e5e8e2"/><stop offset=".56" stop-color="#939891"/><stop offset=".78" stop-color="#f8faf5"/><stop offset="1" stop-color="#777c74"/>
+              </linearGradient>
+              <radialGradient id="faceMetal" cx=".32" cy=".22" r=".86">
+                <stop offset="0" stop-color="#fff"/><stop offset=".4" stop-color="#e7eae4"/><stop offset=".76" stop-color="#9fa39c"/><stop offset="1" stop-color="#3e423d"/>
+              </radialGradient>
+              <linearGradient id="bodyEdge" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#fff" stop-opacity=".82"/><stop offset=".47" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#fff" stop-opacity=".82"/>
+              </linearGradient>
+              <filter id="whiteGlow" x="-60%" y="-60%" width="220%" height="220%">
+                <feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+            <ellipse class="avatar-shadow" cx="130" cy="286" rx="53" ry="9"/>
+            <g class="avatar-body">
+              <g class="arm-left">
+                <path class="limb-base" d="M91 148C76 148 66 157 61 172L51 198"/>
+                <path class="limb-edge" d="M91 148C76 148 66 157 61 172L51 198"/>
+                <circle class="joint" cx="60" cy="174" r="8"/>
+                <path class="hand" d="M51 197c-7 2-12 8-13 16 4 5 9 5 13 1l6-9"/>
+              </g>
+              <g class="arm-right">
+                <path class="limb-base" d="M169 148c15 0 25 9 30 24l10 26"/>
+                <path class="limb-edge" d="M169 148c15 0 25 9 30 24l10 26"/>
+                <circle class="joint" cx="200" cy="174" r="8"/>
+                <path class="hand" d="M209 197c7 2 12 8 13 16-4 5-9 5-13 1l-6-9"/>
+              </g>
+              <path class="neck" d="M114 119h32v29c-8 9-24 9-32 0z"/>
+              <path class="torso" d="M105 137c-15 4-23 13-28 29l-12 68c-2 11 5 18 16 18h98c11 0 18-7 16-18l-12-68c-5-16-13-25-28-29l-15 8h-20z"/>
+              <path class="torso-panel" d="M102 158c8-7 17-10 28-10s20 3 28 10l8 55h-72z"/>
+              <path class="chest-line" d="M108 174h44M106 184h48"/>
+              <circle class="chest-light" cx="130" cy="203" r="7"/>
+              <path class="waist" d="M83 244h94l-5 18H88z"/>
+              <g class="avatar-head">
+                <ellipse class="head-shell" cx="130" cy="82" rx="37" ry="43"/>
+                <path class="face-plate" d="M99 77c4-24 17-35 31-35s27 11 31 35v12c0 21-13 35-31 35S99 110 99 89z"/>
+                <path class="head-glint" d="M108 57c7-8 15-12 24-12"/>
+                <path class="eye eye-left" d="M111 79h12"/>
+                <path class="eye eye-right" d="M137 79h12"/>
+                <path class="avatar-mouth" d="M121 99q9 7 18 0"/>
+                <path class="jaw-line" d="M106 98q24 25 48 0"/>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div class="state-line"><span class="state-light"></span><span id="assistantState">Ready to listen</span></div>
+    </section>
+
+    <section class="conversation" id="conversation" aria-live="polite" aria-label="Conversation">
+      <div class="message-list" id="messageList">
+        <article class="message assistant-message welcome-message">
+          <div class="message-content"><span class="message-author">Abhi AI</span><p>Hi, I’m Abhi AI. Ask me anything, or try a voice command.</p></div>
+        </article>
+      </div>
+      <div class="typing-indicator" id="typingIndicator" hidden><span></span><span></span><span></span><em>Thinking</em></div>
+    </section>
+  </main>
+
+  <section class="control-dock" aria-label="Assistant controls">
+    <div class="call-panel" id="callPanel" hidden>
+      <label for="phoneInput">Phone number</label>
+      <input id="phoneInput" type="tel" inputmode="tel" autocomplete="tel" placeholder="Enter a number" maxlength="24">
+      <button class="dial-button" id="callButton" type="button">Open dialer <span aria-hidden="true">↗</span></button>
+    </div>
+    <form class="search-bar" id="chatForm" autocomplete="off">
+      <button class="dock-toggle mic-toggle" id="micToggle" type="button" aria-pressed="false" title="Turn microphone on or off">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3m-4 0h8"/></svg>
+        <span id="micLabel">Mic Off</span>
+      </button>
+      <span class="search-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg></span>
+      <label class="sr-only" for="messageInput">Ask Abhi AI</label>
+      <input id="messageInput" name="message" type="text" maxlength="3000" placeholder="Ask anything or say a command..." enterkeyhint="send" required>
+      <button class="send-button" id="sendButton" type="submit" aria-label="Send message" title="Send message">
+        <span>Send</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 4 17 8-17 8 3-8-3-8Zm3 8h14"/></svg>
+      </button>
+    </form>
+    <div class="dock-footer">
+      <span class="dock-hint">Try: “Open YouTube” · “What time is it?” · “Open Instagram”</span>
+      <div class="dock-actions">
+        <button class="dock-toggle" id="voiceToggle" type="button" aria-pressed="false" title="Turn spoken replies on or off">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="M16 9a5 5 0 0 1 0 6m2.5-8.5a8.5 8.5 0 0 1 0 11"/></svg>
+          <span id="voiceLabel">Voice Off</span>
+        </button>
+        <button class="dock-toggle" id="callPanelToggle" type="button" aria-expanded="false" aria-controls="callPanel" title="Open the call panel">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h3l2 5-2.2 1.5a15 15 0 0 0 4.7 4.7L16 12l5 2v3c0 1.1-.9 2-2 2C10 19 5 14 5 5c0-1.1.9-2 2-2Z"/></svg>
+          <span>Call</span>
+        </button>
+      </div>
+    </div>
+    <p class="dock-note" id="voiceNote">Noise reduction is enabled when supported. Speak, then pause to send.</p>
+  </section>
+</body>
+</html>
